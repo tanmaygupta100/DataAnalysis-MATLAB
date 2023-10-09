@@ -1,6 +1,6 @@
 %{
 ***************************************************************************
-File name: bacteria.m
+File name: growing_bacteria.m
 Programmmer name: Tanmay Gupta
 Date created: 05/28/2020
 Date of last revision: 05/29/2020
