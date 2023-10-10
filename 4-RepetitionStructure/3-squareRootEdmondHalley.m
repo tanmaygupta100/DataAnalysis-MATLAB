@@ -9,34 +9,51 @@ Short description: Calculate square root using Edmond Halley algorithm
 ***************************************************************************
 %}
 
-function sqrt = hw_week4_9_13(A,Int,eps)
+function result= squareRootEdmondHalley(A,x,e)
+
 %Clear the workspace and command windows
-clear, clc
+%clear, clc
 
 %Program description:
 disp('This program will calculate a square root using the Edmond Hall algorithm.')
 disp(' ') % I included a space to make the program appear cleaner at the end
 
 %Variable initialization:
-% A = number taken square root of
-% eps = epsilon special function
-% diff = absolute value of difference of x
+% A is the number needed to find the square root of
+% e is epsilon
+result = x;
+% this is the initial guess
+prev_x = 0;
+% this is the previous value
 
-%Calculation:
-while diff >= eps
-    %New approximation:
-    y(n-1)= (1/A)*x(n-1)^2;
-    x(n)= (x(n-1)/8)*(15-y(n-1)*(10-3*y(n-1)));
-    %Convergence criterion:
-    diff= abs(x(n)-x(n-1));p
+while abs(result - prev_x) > e
+    % continue until convergence criterion is met
+    prev_x = result;
+    % save current x value as xprev for later until result is updated in current run
+    
+    %Calculation:
+    y = result^2/A;
+    result = (result/8)* (15 - y*(10 - 3*y));
+end
+
+%Displaying result:
+fprintf('The square root of %0.2f is %0.4f.',A,result);
 end
 
 
-%Displaying the result:
-sqrt=x(n)
-fprintf('The square root of %0.2f is %0.2f.',A,sqrt);
-
-%Sample run appended from Matlab's command window:
+%Sample run and comparison run appended from Matlab's command window:
 %{
+>> my_sqrt(5,2,0.00001)
+This program will calculate a square root using the Edmond Hall algorithm.
 
+The square root of 5.00 is 2.2361.
+ans =
+
+    2.2361
+
+
+>> sqrt(5)
+ans =
+
+    2.2361
 %}
